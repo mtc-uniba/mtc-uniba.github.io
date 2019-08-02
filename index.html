@@ -1,0 +1,268 @@
+<!doctype html>
+<html>
+    <head>
+        <title>HOME - Monitoring Cuaca | Smart System</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="theme-color" content="#0000ff">
+        <meta name="msapplication-navbutton-color" content="#0000ff">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#0000ff">
+        <meta name="description" content="HOME - Monitoring Cuaca | Smart System">
+        <meta name="keywords" content="HOME - Monitoring Cuaca | Smart System">
+        <meta name="author" content="tim megabot g.ijen">
+        <meta name="title" content="HOME - Monitoring Cuaca | Smart System">
+        <meta name="programmer" content="https://github.com/ardirjs">
+        <meta name="copyright" content="copyright by tim megabot g.ijen all rights reserved">
+        <meta Http-Equiv="Expires" content="0">
+        <meta Http-Equiv="Pragma" content="No-Cache">
+        <meta Http-Equiv="Content-type" content="Text/Html">
+        <meta Http-Equiv="Cache-Control" content="No-Cache">
+        <meta Http-Equiv="Cache-Control" content="No-Store">
+        <meta Http-Equiv="Content-Language" content="En-Us">
+        <meta Http-Equiv="X-UA-Compatible" content="IE=Edge">
+        <link href="icon.png" rel="shortcut icon">
+        <link href="icon.png" rel="apple-touch-icon">
+        <link href="icon.png" rel="apple-touch-icon-precomposed">
+        <link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Hanalei&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Geostar+Fill&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="icon"><img src="uniba.png"></div>
+            <div class="icon"><img src="icon.png"></div>
+            <div class="logos">
+                <span>Monitoring Cuaca</span>
+                <tspan>Internet of Things</tspan>
+            </div>
+        </div>
+        <div class="section">
+            <div class="images">
+                <div></div>
+            </div>
+            <div class="cdatas">
+                <div class="fisis">
+                    <div class="temp"><span><img src="suhu.jpg"></span><span>0</span><span>°C</span></div>
+                    <div class="humid"><span><img src="kelembaban.jpg"></span><span>0</span><span>%</span></div>
+                    <div class="dates">
+                        <span><img src="jam.jpg"></span>
+                        <span>00</span>
+                        <span>:</span>
+                        <span>00</span>
+                    </div>
+                </div>
+                <div class="charts"><div id="container"></div></div>
+            </div>
+        </div>
+        <div class="statistik">
+            <div><div id="containers"></div></div>
+        </div>
+        <div class="footer">
+            <span>&copy2019 TOTOK AND FRIEND</span>
+        </div>
+        <script>
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyCxTnWkF5BhPxi-Uy1OXIoIGSJY4zhemTM",
+                authDomain: "monitoring-cuaca.firebaseapp.com",
+                databaseURL: "https://monitoring-cuaca.firebaseio.com",
+                projectId: "monitoring-cuaca",
+                storageBucket: "monitoring-cuaca.appspot.com",
+                messagingSenderId: "69422688591",
+                appId: "1:69422688591:web:93262fe77a549c77"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            var sensor = [];
+            var s0 = firebase.database().ref().child('data/monitor/0').on('value', snap => sensor[0] = snap.val());
+            var s1 = firebase.database().ref().child('data/monitor/1').on('value', snap => sensor[1] = snap.val());
+            var s2 = firebase.database().ref().child('data/monitor/2').on('value', snap => sensor[2] = snap.val());
+            var s3 = firebase.database().ref().child('data/monitor/3').on('value', snap => sensor[3] = snap.val());
+            var s4 = firebase.database().ref().child('data/monitor/4').on('value', snap => sensor[4] = snap.val());
+            var s5 = firebase.database().ref().child('data/monitor/5').on('value', snap => sensor[5] = snap.val());
+            setInterval(function() {
+                $('.section .cdatas .fisis .temp span:nth-child(2)').text(sensor[3]);
+                $('.section .cdatas .fisis .humid span:nth-child(2)').text(sensor[2]);
+                $('.section .cdatas .fisis .dates span:nth-child(2)').text(sensor[4]);
+                $('.section .cdatas .fisis .dates span:nth-child(4)').text(sensor[5]);
+                
+		if (sensor[0] >= 0 && sensor[0] < 450) {$('.section .images div').css('background-image', 'url("hujan-deras.png")');}
+		else if (sensor[0] >= 450 && sensor[0] < 650) {$('.section .images div').css('background-image', 'url("gerimis.png")');}
+		else if (sensor[0] >= 650) {
+			/*$('.section .images div').css('background-image', 'url("panas.png")');*/
+			if (sensor[1] < 40) {$('.section .images div').css('background-image', 'url("panas.png")');}
+                	else if (sensor[1] >= 40 && sensor[1] < 100) {$('.section .images div').css('background-image', 'url("mendung-ringan.png")');}
+                	else if (sensor[1] >= 100) {$('.section .images div').css('background-image', 'url("mendung.png")');}
+		}
+                /*
+                else if (sensor[0] == 3) {$('.section .images div').css('background-image', 'url("gerimis.png")');}
+                else if (sensor[0] == 4) {$('.section .images div').css('background-image', 'url("hujan-deras.png")');}
+                */
+            }, 500);
+        </script>
+        <script>
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'spline',
+                    animation: Highcharts.svg,
+                    marginRight: 10,
+                    events: {
+                        load: function () {
+                        var series1 = this.series[0];
+                        var series2 = this.series[1];
+                        setInterval(function () {
+                            var x = (new Date()).getTime(), a = sensor[0], b = sensor[1];
+                            series1.addPoint([x, a], false, true);
+                            series2.addPoint([x, b], true, true);
+                            }, 1000);
+                        }
+                    }
+                },
+                time: {
+                    useUTC: false
+                },
+                title: {
+                    text: 'Data Nyata'
+                },
+                credits: {
+                    enabled: false
+                },
+                xAxis: {
+                    type: 'datetime',
+                    tickPixelInterval: 150
+                },
+                yAxis: {
+                        title: {
+                        text: 'Value'
+                    },
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: '#808080'
+                    }]
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br/>',
+                    pointFormat: '{point.x:%Y-%m-%d %H:%M:%S}<br/>{point.y:.2f}'
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Data Cahaya',
+                    data: (function () {
+                        var data = [], time = (new Date()).getTime(), i;
+                        for (i = -19; i <= 0; i += 1) {
+                            data.push({
+                                x: time + i * 1000, y: sensor[0]
+                            });
+                        }
+                        return data;
+                    }())
+                }, {   
+                    name: 'Data Hujan',
+                    data: (function () {
+                        var data = [], time = (new Date()).getTime(), i;
+                        for (i = -19; i <= 0; i += 1) {
+                            data.push({
+                                x: time + i * 1000, y: sensor[1]
+                            });
+                        }
+                        return data;
+                    }())
+                }]
+            });
+            var date, data1 = [], data2 = [];
+            $.getJSON('https://monitoring-cuaca.firebaseio.com/cdata.json', function (data) {
+                var cdata = JSON.stringify(data);
+	            for (t = 0; Object.keys(data)[t] != undefined; t++) {} console.log("t = " + t);
+	            for (i = 0; Object.keys(data)[i] != undefined; i++) {
+		            var key = Object.keys(data)[i];
+                    firebase.database().ref().child('cdata/' + key + '/date').once('value', snap => date = snap.val() * 1000);
+		            firebase.database().ref().child('cdata/' + key + '/monitor/0').once('value', snap => data1.push([date, snap.val()]));
+		            firebase.database().ref().child('cdata/' + key + '/monitor/1').once('value', snap => data2.push([date, snap.val()]));
+                }
+                console.log("i = " + i);
+            });
+            function drawChart(data1, data2) {
+                Highcharts.chart('containers', {
+                    chart: {
+                        zoomType: 'x'
+                    },
+                    title: {
+                        text: 'Data Statistik'
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    subtitle: {
+                        text: document.ontouchstart === undefined ?
+                        '' : ''
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: {
+                        title: {
+                        text: 'Exchange rate'
+                        }
+                    },
+                    legend: {
+                        enabled: false
+                    },
+                    plotOptions: {
+                        area: {
+                        fillColor: {
+                            linearGradient: {
+                                x1: 0,
+                                y1: 0,
+                                x2: 0,
+                                y2: 1
+                            },
+                            stops: [
+                                [0, Highcharts.getOptions().colors[0]],
+                                [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                            ]
+                        },
+                        marker: {
+                            radius: 2
+                        },
+                        lineWidth: 1,
+                            states: {
+                                hover: {
+                                    lineWidth: 1
+                                }
+                            },
+                            threshold: null
+                        }
+                    },
+                    series: [{
+                        type: 'area',
+                        name: 'Data Hujan',
+                        data: data1
+                    }, {
+                        type: 'area',
+                        name: 'Data Cahaya',
+                        data: data2
+                    }]
+                });
+            };
+            var state = 0;
+            setInterval(function() {
+                if (state == 1) {
+                    drawChart(data1, data2)
+                }
+                state ++;
+            }, 5000);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,245 @@
+body {
+    margin: 0;
+    color: #000000;
+    background: #ffffff;
+}
+
+.header {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 80px;
+    background: rgba(6, 121, 178, 1);
+    border-bottom: 2px solid rgb(15, 15, 150);
+    box-shadow: 1px 2px 5px rgb(15, 15, 150);
+}
+.header .icon {
+    width: 65px;
+    height: 65px;
+    margin: 0 0 0 25px;
+}
+.header .icon img {
+    width: 100%;
+    height: 100%;
+}
+.header .logos {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+}
+.header .logos span {
+    margin: -10px 25px 0 25px;
+    font-size: 25pt;
+    font-family: 'Hanalei', cursive;
+    text-decoration: underline;
+    color: #ffffff;
+    text-shadow: 2px 2px red;
+}
+.header .logos tspan {
+    width: 100%;
+    margin: -30px 25px 0 25px;
+    color: #ffffff;
+    font-size: 12pt;
+    font-family: 'Geostar Fill', cursive;
+    font-weight: bolder;
+    text-shadow: 2px 2px red;
+}
+
+.section {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}
+.section .images {
+    width: 40%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+.section .images div {
+    width: 320px;
+    height: 320px;
+    background-image: url('');
+    background-repeat: no-repeat;
+    background-size: 320px 320px;
+}
+.section .cdatas {
+    width: 60%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 15px;
+}
+.section .cdatas .fisis {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+.section .cdatas .fisis .temp {
+    width: 100%;
+    margin: 0 15px 0 0;
+    font-size: 20pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #0000ff;
+}
+.section .cdatas .fisis .temp span:nth-child(1) img {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+}
+.section .cdatas .fisis .humid {
+    width: 100%;
+    margin: 0 0 0 0;
+    font-size: 20pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #0000ff;
+}
+.section .cdatas .fisis .humid span:nth-child(1) img {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+}
+.section .cdatas .fisis .dates {
+    width: 100%;
+    margin: 0 0 0 15px;
+    font-size: 20pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #0000ff;
+}
+.section .cdatas .fisis .dates span:nth-child(1) img {
+    width: 35px;
+    height: 35px;
+    margin: 0 10px;
+}
+.section .cdatas .charts {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 15px 0 0 0;
+}
+.section .cdatas .charts #container {
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid #0000ff;
+}
+.statistik {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+
+}
+.statistik div {
+    width: 100%;
+    height: 270px;
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+.statistik div #containers {
+    width: 97.5%;
+    height: 100%;
+    border-bottom: 3px solid #0000ff;
+}
+.footer {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    margin: 35px 0 0 0;
+    background: rgba(6, 121, 178, 1);
+}
+.highcharts-exporting-group {
+    display: none;
+}
+.highcharts-axis-title tspan {
+    display: none;
+}
+.highcharts-title tspan {
+    font-size: 12pt;
+    font-family: 'Geostar Fill', cursive;
+}
+
+@media (min-width: 100px) and (max-width: 767px) {
+    .header {
+        flex-flow: row wrap;
+        height: 160px;
+        justify-content: center;
+    }
+    .header .icon {
+        width: 65px;
+        height: 65px;
+        margin: 15px 10px;
+    }
+    .header .logos {
+        width: 100%;
+    }
+    .header .logos span {
+        font-size: 18pt;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -75px 0 0 0;
+    }
+    .header .logos tspan {
+        font-size: 10pt;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: -165px 0 0 0;
+    }
+    .section {
+        flex-flow: row wrap;
+    }
+    .section .images {
+        width: 100%;
+    }
+    .section .images div {
+        width: 220px;
+        height: 220px;
+        background-repeat: no-repeat;
+        background-size: 220px 220px;
+    }
+    .section .cdatas {
+        width: 100%;
+    }
+    .section .cdatas .fisis {
+        flex-flow: row wrap;
+    }
+    .section .cdatas .fisis .temp,
+    .section .cdatas .fisis .humid,
+    .section .cdatas .fisis .dates {
+        width: 95%;
+        margin: 15px auto;
+    }
+    .statistik div {
+        width: 95%;
+        margin: 15px auto;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
