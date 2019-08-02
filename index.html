@@ -53,9 +53,9 @@
                     <div class="dates">
                         <span><img src="jam.jpg"></span>
                         <span>00</span>
-                        <span> : </span>
+                        <span>:</span>
                         <span>00</span>
-			<span> WIB</span>
+			<span>WIB</span>
                     </div>
                 </div>
                 <div class="charts"><div id="container"></div></div>
@@ -109,10 +109,10 @@
 		var cont = 0;
 	    setInterval(function() {
 		    if (cont == 0) {
-		    	$('.section .cdatas .fisis .dates span:nth-child(3)').text('   ');
+		    	$('.section .cdatas .fisis .dates span:nth-child(3)').css('color', 'black');
 			    cont ++;
 		    } else {
-			    $('.section .cdatas .fisis .dates span:nth-child(3)').text(' : ');
+			    $('.section .cdatas .fisis .dates span:nth-child(3)').css('color', 'white');
 			    cont = 0;
 		    }
 	    }, 1000);
