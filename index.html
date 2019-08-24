@@ -93,12 +93,12 @@
                 $('.section .cdatas .fisis .dates span:nth-child(2)').text(sensor[4]);
                 $('.section .cdatas .fisis .dates span:nth-child(4)').text(sensor[5]);
                 
-		if (sensor[0] >= 0 && sensor[0] < 450) {$('.section .images div').css('background-image', 'url("hujan-deras.png")');}
-		else if (sensor[0] >= 450 && sensor[0] < 650) {$('.section .images div').css('background-image', 'url("gerimis.png")');}
+		if (sensor[0] >= 0 && sensor[0] < 750) {$('.section .images div').css('background-image', 'url("hujan-deras.png")');}
+		else if (sensor[0] >= 450 && sensor[0] < 650) {$('.section .images div').css('background-image', 'url("hujan-deras.png")');}
 		else if (sensor[0] >= 650) {
 			/*$('.section .images div').css('background-image', 'url("panas.png")');*/
-			if (sensor[1] < 40) {$('.section .images div').css('background-image', 'url("panas.png")');}
-                	else if (sensor[1] >= 40 && sensor[1] < 100) {$('.section .images div').css('background-image', 'url("mendung-ringan.png")');}
+			if (sensor[1] < 50) {$('.section .images div').css('background-image', 'url("panas.png")');}
+                	else if (sensor[1] >= 50 && sensor[1] < 100) {$('.section .images div').css('background-image', 'url("mendung.png")');}
                 	else if (sensor[1] >= 100) {$('.section .images div').css('background-image', 'url("mendung.png")');}
 		}
                 /*
